@@ -24,23 +24,33 @@ class Router
 
 #rappelle-toi que l'on fait "Router.new.perform" dans app.rb => après initialize, on définit donc perform.
 def perform 
-  puts "BIENVENUE DANS THE GOSSIP PROJECT"
+  puts "WELCOME IN THE GOSSIP PROJECT"
 
   while true
 
     #on affiche le menu
     puts "Tu veux faire quoi jeune mouss' ?"
     puts "1\. Je veux créer un gossip"
+    puts "2\. Afficher tous les potins"
+    puts "3\. Détruire un potin"
     puts "4\. Je veux quitter l'app"
     params = gets.chomp.to_i #on attend le choix de l'utilisateur
 
     case params #en fonction du choix
     when 1
-      puts "Tu as choisi de créer un gossip" 
+      puts "Nice, raconte !" 
       @controller.create_gossip
 
+    when 2
+      puts "Tu as choisi d'afficher les gossips, ouhlala..." 
+      @controller.index_gossips
+
+    when 3
+      puts "Tiens,tiens, tiens... tu as choisi d'en delete une... ouhlala..."
+      @controller.delete_gossip(@controller.the_gossips)
+
     when 4
-      puts "À bientôt !"
+      puts "Ciao Ciao !"
       break #Ce "break" permet de sortir de la boucle while. C'est même la seule façon d'en sortir.
 
     else
